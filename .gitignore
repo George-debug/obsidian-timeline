@@ -1,6 +1,7 @@
 # Intellij
 *.iml
 .idea
+.gitignore
 
 # npm
 node_modules
