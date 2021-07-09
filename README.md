@@ -1,3 +1,5 @@
+![Example](./images/simple.jpg)
+
 Use `+` at the begining of each line:
 
 - each event has 3 `+` at the beging of the line for time, title and description
