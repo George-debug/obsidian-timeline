@@ -1,0 +1,10 @@
+{
+	"id": "obsidian-timeline",
+	"name": "Timeline",
+	"version": "0.5",
+	"minAppVersion": "0.9.12",
+	"description": "Use to build great timelines",
+	"author": "George Butco",
+	"authorUrl": "https://obsidian.md/about",
+	"isDesktopOnly": false
+}

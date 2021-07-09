@@ -1,0 +1,103 @@
+:root {
+  --timeline-main-line: rgba(0, 0, 0, 0.1) ;
+  --timeline-time-line: rgba(0, 0, 0, 0.2) ;
+  --timeline-dashed-line: rgba(0, 0, 0, 0.1) ;
+}
+
+.theme-light .timeline {
+  --timeline-main-line: rgba(0, 0, 0, 0.1) ;
+  --timeline-time-line: rgba(0, 0, 0, 0.2) ;
+  --timeline-dashed-line: rgba(0, 0, 0, 0.1) ;
+}
+
+.theme-dark .timeline {
+  --timeline-main-line: rgba(255, 255, 255, 0.1) ;
+  --timeline-time-line: rgba(255, 255, 255, 0.2) ;
+  --timeline-dashed-line: rgba(255, 255, 255, 0.1) ;
+}
+
+.timeline.white {
+  --timeline-main-line: rgba(255, 255, 255, 0.1) !important;
+  --timeline-time-line: rgba(255, 255, 255, 0.2) !important;
+  --timeline-dashed-line: rgba(255, 255, 255, 0.1) !important;
+}
+
+.timeline.black {
+  --timeline-main-line: rgba(0, 0, 0, 0.1) !important;
+  --timeline-time-line: rgba(0, 0, 0, 0.2) !important;
+  --timeline-dashed-line: rgba(0, 0, 0, 0.1) !important;
+}
+
+.timeline.spaced-paragraph .description p {
+  line-height: 1.7rem;
+}
+
+.timeline {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 0.5rem 1fr;
+      grid-template-columns: auto 0.5rem 1fr;
+  -webkit-column-gap: 1.3rem;
+          column-gap: 1.3rem;
+  row-gap: 4.5rem;
+  margin-bottom: 4.5rem;
+}
+
+.timeline .time, .timeline .title {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.timeline .info {
+  position: relative;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3 / span 1;
+}
+
+.timeline .info .title {
+  margin-bottom: 0.65rem;
+}
+
+.timeline .info::after {
+  content: ' ';
+  position: absolute;
+  border-bottom: 0.1rem dashed var(--timeline-dashed-line);
+  width: 100%;
+  height: 2.2rem;
+}
+
+.timeline .info:last-child::after {
+  content: none;
+}
+
+.timeline .time {
+  position: relative;
+  text-align: right;
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / span 1;
+}
+
+.timeline .time::after {
+  content: ' ';
+  background-color: var(--timeline-time-line);
+  position: absolute;
+  width: 0.5rem;
+  height: 100%;
+  right: -1.8rem;
+}
+
+.timeline .main-line {
+  height: 100%;
+  width: 0.5rem;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / span 1;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  background-color: var(--timeline-main-line);
+}
