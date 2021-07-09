@@ -10,3 +10,5 @@ Use `[]` at the begining of the code-block to add pre-written classes or your ow
 - **white**/**black** changes the main vertical line and dashed line to white/black
 - **spaced-paragraph** increases the default line-height of description's paragraphs
 - The description of each event can do everything Obsidian.md can do
+
+[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BuyMeACoffee" width="100">](https://www.buymeacoffee.com/CarSalesman)
