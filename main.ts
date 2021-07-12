@@ -24,20 +24,32 @@ class EventFactory {
 		this.sourcePath = sourcePath;
 	}
 
+	//remove first child's top margin and last child's bottom margin
+	regulate(component: HTMLDivElement) {
+		let aux = component.lastChild as HTMLElement;
+		aux.style.marginBottom = "0";
+		aux = component.firstChild as HTMLElement;
+		aux.style.marginTop = "0";
+	}
+
 	create(time: string, title: string, description: string) {
-		this.root.createDiv({ cls: "time", text: time });
+		let timeEl = this.root.createDiv({ cls: "time" });
 		let infoEl = this.root.createDiv({ cls: "info" });
-		infoEl.createDiv({ cls: "title", text: title });
+		let titleEl = infoEl.createDiv({ cls: "title" });
 		let descriptionEl = infoEl.createDiv({ cls: "description" });
 
+		MarkdownRenderer.renderMarkdown(time, timeEl, this.sourcePath, null);
+		MarkdownRenderer.renderMarkdown(title, titleEl, this.sourcePath, null);
 		MarkdownRenderer.renderMarkdown(
 			description,
 			descriptionEl,
 			this.sourcePath,
 			null
 		);
-		let lastChildOfDescription = descriptionEl.lastChild as HTMLElement;
-		lastChildOfDescription.style.marginBottom = "0";
+
+		this.regulate(descriptionEl);
+		this.regulate(timeEl);
+		this.regulate(titleEl);
 	}
 }
 

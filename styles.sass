@@ -39,19 +39,34 @@ $dashed-line-width: 0.1rem
     grid-template-columns: auto $main-line-width 1fr
     column-gap: $title-info-margin
     row-gap: $event-event-margin
-    margin-bottom: $event-event-margin
+    margin-bottom: $event-event-margin/2
+    margin-top: $event-event-margin/2
 
     .time, .title
-        font-size: $header-size
-        font-weight: bold
+        *
+            font-size: $header-size
+            font-weight: bold
+
+    .time
+        grid-column: 1 / span 1
+        position: relative
+        align-self: start
+        text-align: right
+
+        &::before
+            content: ' '
+            background-color: var(--timeline-time-line)
+            position: absolute
+            width: $main-line-width
+            height: 100%
+            right: -($title-info-margin + $main-line-width)
 
     .info
         position: relative
-        //just wanna be sure it stays there
         grid-column: 3 / span 1
 
         .title
-            margin-bottom: $header-size/2
+            margin-bottom: $header-size/1.5
 
         &::after
             content: ' '
@@ -62,21 +77,6 @@ $dashed-line-width: 0.1rem
 
     .info:last-child::after
         content: none
-
-    .time
-        position: relative
-        text-align: right
-        align-self: start
-        //just wanna be sure it stays there
-        grid-column: 1 / span 1
-
-        &::after
-            content: ' '
-            background-color: var(--timeline-time-line)
-            position: absolute
-            width: $main-line-width
-            height: 100%
-            right: -($title-info-margin + $main-line-width)
 
     .main-line
         height: 100%
