@@ -1,7 +1,7 @@
 {
 	"id": "obsidian-timeline",
 	"name": "Timeline",
-	"version": "0.5",
+	"version": "0.6",
 	"minAppVersion": "0.9.12",
 	"description": "Used to build great timelines",
 	"author": "George Butco",
