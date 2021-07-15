@@ -11,12 +11,3 @@ package-lock.json
 
 # obsidian
 data.json
-
-# release
-
-main.ts
-package.json
-rollup.config.js
-styles.sass
-tsconfig.json
-versions.json
