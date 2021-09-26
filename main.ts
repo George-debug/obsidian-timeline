@@ -1,11 +1,11 @@
-import {
-	Plugin,
-	MarkdownPostProcessorContext,
-	MarkdownRenderer,
-} from "obsidian";
+import { Plugin, MarkdownView, TFile } from "obsidian";
 
-//string to array of classes
-const arrayToClasses = (input: string): string[] => {
+import timelineHandlers from "./src/codeBlockHandler";
+import EventFactory from "./src/EventFactory";
+
+const classRegex = /(?<=^\s*)\[.+?\]/gs;
+
+const stringToClassArray = (input: string): string[] => {
 	input = input.trim();
 	if (input[0] != "[" || input[input.length - 1] != "]") return [];
 
@@ -15,89 +15,80 @@ const arrayToClasses = (input: string): string[] => {
 		.split(/\s*,\s*/);
 };
 
-class EventFactory {
-	root: HTMLElement;
-	sourcePath: string;
-
-	constructor(root: HTMLElement, sourcePath: string) {
-		this.root = root;
-		this.sourcePath = sourcePath;
-	}
-
-	//remove first child's top margin and last child's bottom margin
-	regulate(component: HTMLDivElement) {
-		let aux = component.lastChild as HTMLElement;
-		aux.style.marginBottom = "0";
-		aux = component.firstChild as HTMLElement;
-		aux.style.marginTop = "0";
-	}
-
-	create(time: string, title: string, description: string) {
-		let timeEl = this.root.createDiv({ cls: "time" });
-		let infoEl = this.root.createDiv({ cls: "info" });
-		let titleEl = infoEl.createDiv({ cls: "title" });
-		let descriptionEl = infoEl.createDiv({ cls: "description" });
-
-		MarkdownRenderer.renderMarkdown(time, timeEl, this.sourcePath, null);
-		MarkdownRenderer.renderMarkdown(title, titleEl, this.sourcePath, null);
-		MarkdownRenderer.renderMarkdown(
-			description,
-			descriptionEl,
-			this.sourcePath,
-			null
-		);
-
-		this.regulate(descriptionEl);
-		this.regulate(timeEl);
-		this.regulate(titleEl);
-	}
-}
-
-const codeBlockHandler = (
-	source: string,
-	el: HTMLElement,
-	ctx: MarkdownPostProcessorContext
-) => {
-	//Initial State
-	el.addClass("timeline");
-	let ef = new EventFactory(el, ctx.sourcePath);
-
-	//source to events
-	const events: string[] = source
-		.split(/^\s*\+ ?/gm)
-		.map((event) => (event.trim().length != 0 ? event : "\u200B"));
-	for (let elClass of arrayToClasses(events[0])) el.addClass(elClass);
-
-	const incompleteCounter = (events.length - 1) % 3;
-	const completeCounter = events.length - 1 - incompleteCounter;
-
-	//build it
-	el.createDiv({
-		cls: "main-line",
-		attr: {
-			style: `grid-row-end: ${
-				completeCounter / 3 + 1 + (incompleteCounter != 0 ? 1 : 0)
-			}`,
-		},
-	});
-	for (let i = 1; i < completeCounter; i += 3) {
-		ef.create(events[i], events[i + 1], events[i + 2]);
-	}
-
-	switch (incompleteCounter) {
-		case 1:
-			ef.create(events[completeCounter + 1], "", "");
-			return;
-		case 2:
-			ef.create(events[completeCounter + 1], events[completeCounter + 2], "");
-			return;
-		default:
-			return;
-	}
-};
-
 export default class MyPlugin extends Plugin {
-	onload() {
-		this.registerMarkdownCodeBlockProcessor("timeline", codeBlockHandler);
+	addLinksToCache(
+		links: NodeListOf<HTMLAnchorElement>,
+		sourcePath: string
+	): void {
+		/* //@ts-expect-error
+        this.app.metadataCache.resolveLinks(sourcePath); */
+		for (let i = 0; i < links.length; i++) {
+			const a = links[i];
+			if (a.dataset.href) {
+				let file = this.app.metadataCache.getFirstLinkpathDest(
+					a.dataset.href,
+					""
+				);
+				let cache, path;
+				if (file && file instanceof TFile) {
+					cache = this.app.metadataCache.resolvedLinks;
+					path = file.path;
+				} else {
+					cache = this.app.metadataCache.unresolvedLinks;
+					path = a.dataset.href;
+				}
+				if (!cache[sourcePath]) {
+					cache[sourcePath] = {
+						[path]: 0,
+					};
+				}
+				let resolved = cache[sourcePath];
+				if (!resolved[path]) {
+					resolved[path] = 0;
+				}
+				resolved[path] += 1;
+				cache[sourcePath] = resolved;
+			}
+		}
 	}
+
+	onload = async () => {
+		timelineHandlers.forEach(({ tag, handler }) => {
+			this.registerMarkdownCodeBlockProcessor(tag, (source, el, ctx) => {
+				let mainLine = el.createDiv({
+					cls: "main-line",
+				});
+				el.addClass("timeline");
+				let classMatch = source.match(classRegex);
+				if (classMatch !== null) {
+					let classes = stringToClassArray(classMatch[0]);
+					el.addClasses(classes);
+				}
+
+				let eventFactory = new EventFactory(el, ctx.sourcePath);
+				handler(source, eventFactory);
+				mainLine.style.gridRowEnd = `${eventFactory.getEventCounter() + 1}`;
+
+				const links = el.querySelectorAll<HTMLAnchorElement>("a.internal-link");
+				this.addLinksToCache(links, ctx.sourcePath);
+			});
+
+			this.registerEvent(
+				this.app.metadataCache.on("resolve", (file) => {
+					if (this.app.workspace.getActiveFile() != file) return;
+
+					const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+
+					if (!view || !(view instanceof MarkdownView)) return;
+
+					const admonitionLinks =
+						view.contentEl.querySelectorAll<HTMLAnchorElement>(
+							"a.internal-link"
+						);
+
+					this.addLinksToCache(admonitionLinks, file.path);
+				})
+			);
+		});
+	};
 }
