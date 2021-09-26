@@ -1,12 +1,12 @@
-# Build Amazing Timelines
+## Build Amazing Timelines
 
 ![Example](./readme_source/examples_4.png)
 
-# How to use it
+## How to use it
 
-You can use the `timeline` or `timeline-labeled` tag
+Use the `timeline` or `timeline-labeled` tag
 
-- ### `timeline` tag
+- #### `timeline` tag
 
   Use `+` at the beginning of each line:
 
@@ -16,7 +16,7 @@ You can use the `timeline` or `timeline-labeled` tag
 
     <br/>
 
-- ### `timeline-labeled` tag
+- #### `timeline-labeled` tag
 
   - each event has a corresponding label (`date`, `title` and `content`) that starts the line
   - you can separate them with empty lines if it's easier for you to write
@@ -24,7 +24,7 @@ You can use the `timeline` or `timeline-labeled` tag
 
   <br/>
 
-`[]` is optional!
+#### `[]` is optional!
 
 You can use `[]` at the beginning of the code-block to add pre-written classes or your own classes to the wrapper. <br />
 Example: `[spaced-paragraph, your-class, even-more]` <br />
@@ -43,7 +43,7 @@ Example:
 
 # Customize
 
-Using pre-written class for `line`, `body` and the `active color`:
+Using pre-written classes for `line`, `body` and the `active color`:
 
 - ### line:
   - preview (soon, for now test it in obsidian)
