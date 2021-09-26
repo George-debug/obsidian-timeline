@@ -4,13 +4,13 @@
 
 ## How to use it
 
-Use the `timeline` or `timeline-labeled` tag
+Choose the `timeline` or `timeline-labeled` tag
 
 - #### `timeline` tag
 
-  Use `+` at the beginning of each line:
+  Requires `+` at the beginning of each line:
 
-  - each event has 3 `+`s at the beginning of the line for time, title and content
+  - each event has 3 `+`s in total: 1 for time, 1 for title and 1 for content
   - you can separate them with empty lines if it's easier for you to write
   - [Example](./readme_source/timeline_tag.md)
 
