@@ -86,5 +86,4 @@ Using pre-written classes for `line`, `body` and the `active color`:
     - active-color-interactive-accent-hover
     - active-color-interactive-success
 
-<br />
 [<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BuyMeACoffee" width="100">](https://www.buymeacoffee.com/CarSalesman)
