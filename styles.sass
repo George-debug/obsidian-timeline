@@ -1,86 +1,119 @@
+
 $header-size: 1.3rem
-$title-info-margin: 1.3rem
-$event-event-margin: 4.5rem
-$main-line-width: 0.5rem
-$dashed-line-width: 0.1rem
+$event-margin: 4.5rem
+$line-margin: 1.5rem
+$point-size: 0.5rem
+$line-width: 0.5rem
 
-@mixin white($imp:'')
-    --timeline-main-line: rgba(255, 255, 255, 0.1) #{$imp}
-    --timeline-time-line: rgba(255, 255, 255, 0.2) #{$imp}
-    --timeline-dashed-line: rgba(255, 255, 255, 0.1) #{$imp}
+//resize var system (failure no. 8)
+// $vars-resize: [["line-width", [0.2rem, 0.5rem, 0.8rem, 1.1rem, 1.4rem]],["point-size", [0.2rem, 0.5rem, 0.8rem, 1.1rem, 1.4rem]]]
 
-@mixin black($imp:'')
-    --timeline-main-line: rgba(0, 0, 0, 0.1) #{$imp}
-    --timeline-time-line: rgba(0, 0, 0, 0.2) #{$imp}
-    --timeline-dashed-line: rgba(0, 0, 0, 0.1) #{$imp}
+// @each $var in $vars-resize
+//     $var-name: nth($var, 1)
+//     $var-sizes: nth($var, 2)
 
-\:root
-    @include black()
+//     @for $i from 1 through length($var-sizes)
+//         $size: nth($var-sizes, $i)
+//         .timeline.#{$var-name + "-" + $i}
+//             #{"--timeline-" + $var-name}: $size
 
-.theme-light .timeline
-    @include black()
+// @function get-var-index($name)
+//     @for $i from 1 through length($vars-resize)
+//         $current-var: nth($vars-resize, $i)
+//         @if $name == nth($current-var, 1)
+//             @return $i
 
-.theme-dark .timeline
-    @include white()
+//     @return -1
 
-.timeline.white
-    @include white('!important')
+// @mixin print-var-size($name, $size)
+//     $index: get-var-index($name)
 
-.timeline.black
-    @include black('!important')
+//     @if $index != -1
+//         $var: nth($vars-resize, $index)
+//         $resize-values: nth($var, 2)
+//         #{"--timeline-" + $name}: nth($resize-values, $size)
 
-.timeline.spaced-paragraph
+@import "./timeline-lines"
+@import "./timeline-bodies"
+
+.timeline.spaced-lines
     .description
         p
             line-height: 1.7rem
 
 .timeline
+    //--interactive accent
+    --timeline-active-color: var(--background-modifier-success)
+
+$active-colors: ["background-modifier-success", "background-modifier-error", "background-modifier-error-hover", "text-accent", "text-accent-hover", "text-error", "text-error-hover", "text-selection", "interactive-accent", "interactive-accent-hover", "interactive-success"]
+
+@each $color in $active-colors
+    .timeline.active-color-#{$color}
+        --timeline-active-color: #{"var(--"+$color+")"}
+
+.timeline
     display: grid
-    grid-template-columns: auto $main-line-width 1fr
-    column-gap: $title-info-margin
-    row-gap: $event-event-margin
-    margin-bottom: $event-event-margin/2
-    margin-top: $event-event-margin/2
+    grid-template-columns: auto auto 1fr
+    column-gap: $line-margin
+    row-gap: $event-margin
+    margin: 2.3rem 0
 
     .time, .title
         *
             font-size: $header-size
             font-weight: bold
 
-    .time
+    .time-container
         grid-column: 1 / span 1
         position: relative
         align-self: start
         text-align: right
 
-        &::before
+        &::before, &::after
             content: ' '
-            background-color: var(--timeline-time-line)
             position: absolute
-            width: $main-line-width
             height: 100%
-            right: -($title-info-margin + $main-line-width)
+            width: $point-size
+            right: - $line-margin - ($point-size + $line-width) / 2
+            top: 0
+
+        &::before
+            background-color: var(--background-primary)
+
+        &::after
+            background-color: var(--text-normal)
+            opacity: 0.25
 
     .info
         position: relative
         grid-column: 3 / span 1
-
         .title
             margin-bottom: $header-size/1.5
 
         &::after
             content: ' '
             position: absolute
-            border-bottom: $dashed-line-width dashed var(--timeline-dashed-line)
+            border-bottom: 0.1rem dashed var(--text-normal)
+            opacity: 0.1
             width: 100%
-            height: #{($event-event-margin - $dashed-line-width)/2}
+            height: $event-margin/2
 
     .info:last-child::after
-        content: none
+        display: none
 
     .main-line
+        //box-sizing: border-box
         height: 100%
-        width: $main-line-width
+        width: $line-width
         grid-column: 2 / span 1
         grid-row-start: 1
-        background-color: var(--timeline-main-line)
+        background-color: var(--text-normal)
+        //border-left: $main-line-width solid var(--text-normal)
+        opacity: 0.1
+
+//regulate function from EventFactory class from earlier versions
+.timeline
+    .time-container .time, .info .title, .info .description
+        & > *:first-child, & > *:last-child
+            margin-top: 0
+            margin-bottom: 0
