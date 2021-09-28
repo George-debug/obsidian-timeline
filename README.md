@@ -87,3 +87,6 @@ Using pre-written classes for `line`, `body` and the `active color`:
     - active-color-interactive-success
 
 [<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BuyMeACoffee" width="100">](https://www.buymeacoffee.com/CarSalesman)
+
+## Special thanks to:
+- [taqyon](https://github.com/taqyon)
