@@ -1,6 +1,6 @@
 ## Build Amazing Timelines
 
-![Example](./readme_source/examples_4.png)
+![Example](./readme_source/examples_4.jpg)
 
 ## How to use it
 
@@ -40,6 +40,10 @@ Example:
     content:
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     ```
+
+# Just a snippet
+
+Use this [file](./just_the_snippet/timeline.css) as a snippet using this [template](./just_the_snippet/template.md)!
 
 # Customize
 
@@ -87,6 +91,3 @@ Using pre-written classes for `line`, `body` and the `active color`:
     - active-color-interactive-success
 
 [<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BuyMeACoffee" width="100">](https://www.buymeacoffee.com/CarSalesman)
-
-## Special thanks to:
-- [taqyon](https://github.com/taqyon)

@@ -1,0 +1,101 @@
+$header-size: 1.3rem
+$event-margin: 4.5rem
+$line-margin: 1.5rem
+$point-size: 0.5rem
+$line-width: 0.5rem
+
+$timeline-selector: " > .markdown-preview-section > div:nth-child(3) > ul" //maybe will not work here
+$time-selector: " > li:nth-child(odd)"
+$info-selector: " > li:nth-child(even)"
+$title-selector: " > ul > li:first-child"
+$description-selector: "> ul > li:last-child"
+
+@import "./timeline-lines"
+@import "./timeline-bodies"
+
+.timeline
+    --timeline-active-color: var(--background-modifier-success)
+
+    ul
+        list-style-type: none
+        padding-left: 0
+
+$active-colors: ["background-modifier-success", "background-modifier-error", "background-modifier-error-hover", "text-accent", "text-accent-hover", "text-error", "text-error-hover", "text-selection", "interactive-accent", "interactive-accent-hover", "interactive-success"]
+
+@each $color in $active-colors
+    .timeline.active-color-#{$color}
+        --timeline-active-color: #{"var(--"+$color+")"}
+
+#{".timeline" + $timeline-selector}
+    display: grid
+    grid-template-columns: auto auto 1fr
+    column-gap: $line-margin
+    margin: 2.3rem 0
+    //row-gap: $event-margin
+
+    #{$time-selector}, #{$info-selector+$title-selector}
+        font-size: $header-size
+        font-weight: bold
+
+        *
+            font-size: $header-size
+            font-weight: bold
+
+    #{$time-selector}
+        grid-column: 1 / span 1
+        position: relative
+        align-self: start
+        text-align: right
+
+        &::before, &::after
+            content: ' '
+            position: absolute
+            height: 100%
+            width: $point-size
+            right: - $line-margin - ($point-size + $line-width) / 2
+            top: 0
+
+        &::before
+            background-color: var(--background-primary)
+
+        &::after
+            background-color: var(--text-normal)
+            opacity: 0.25
+
+    #{$info-selector}
+        position: relative
+        grid-column: 3 / span 1
+        margin-bottom: $event-margin
+
+        #{$title-selector}
+            margin-bottom: $header-size/1.5
+
+        &::after
+            content: ' '
+            position: absolute
+            border-bottom: 0.1rem dashed var(--text-normal)
+            opacity: 0.1
+            width: 100%
+            height: $event-margin/2
+
+    &::before
+        content: ''
+        height: 100%
+        width: $line-width
+        grid-column: 2 / span 1
+        grid-row-start: 1
+        grid-row-end: span 1000
+        background-color: var(--text-normal)
+        opacity: 0.1
+
+    #{$info-selector+":last-child"}
+        margin-bottom: 0
+
+        &::after
+            display: none
+
+#{".timeline" + $timeline-selector}
+    #{$time-selector}, #{$info-selector+$title-selector}, #{$info-selector+$description-selector}
+        & > *:first-child, & > *:last-child
+            margin-top: 0
+            margin-bottom: 0
