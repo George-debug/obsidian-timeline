@@ -71,7 +71,7 @@ Using pre-written classes for `line`, `body` and the `active color`:
 - ### active color:
   - it uses obsidian's css variables as active colors, so it matches the theme
   - default active color is _background-modifier-success_
-  - if you want your own color use `--timeline-active-color` css varible atached to `.timeline` class
+  - if you want your own color use `--timeline-active-color` css variable attached to `.timeline` class
     ```
     .timeline
         --timeline-active-color: #00c137
