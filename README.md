@@ -1,6 +1,6 @@
 ## Build Amazing Timelines
 
-<img src="./readme_source/examples_4.jpg">
+<img src="https://github.com/George-debug/obsidian-timeline/blob/master/readme_source/examples_4.jpg">
 
 ## How to use it
 
