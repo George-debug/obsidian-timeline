@@ -1,6 +1,6 @@
 ## Build Amazing Timelines
 
-![Example](./readme_source/examples_4.jpg)
+<img src="./readme_source/examples_4.jpg">
 
 ## How to use it
 
