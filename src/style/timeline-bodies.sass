@@ -1,0 +1,51 @@
+@import "prefix"
+    
+.timeline.body-2, .timeline.body-3, .timeline.body-4
+    > .title, > .description
+        background-color: var(--background-primary-alt)
+        
+    .description::after
+        display: none
+
+.timeline.body-2, .timeline.body-4
+    .title, .description
+        @include padding($text-margin)
+
+    .title
+        @include padding-bottom(0)
+
+// .timeline.body-2
+//     $radius: $text-margin
+//     .title
+//         border-radius: $radius $radius 0 0
+
+//     .description
+//         border-radius: 0 0 $radius $radius
+
+// .timeline.body-3
+//     $triangle-width: 1rem
+
+//     .title, .description
+//         margin-left: $triangle-width
+
+//     .title
+//         position: relative
+//         background: var(--timeline-active-color)
+//         padding: 0 $line-margin
+
+//         &::before
+//             content: ''
+//             position: absolute
+//             width: $triangle-width + 1rem
+//             background: var(--timeline-active-color)
+//             top: 0
+//             bottom: 0
+//             left: -($triangle-width)
+//             clip-path: polygon($triangle-width 0, 100% 0, 100% 100%, $triangle-width 100%, 0 50%)
+
+//     .description
+//         padding: $line-margin
+
+// .timeline.body-4
+//     .title, .description
+//         border-left: 0.3rem solid var(--timeline-active-color)

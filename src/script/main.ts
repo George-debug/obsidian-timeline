@@ -3,9 +3,13 @@ import { Plugin, MarkdownView, TFile } from "obsidian";
 import TagParsers from "./TagParsers";
 import TimelineElement from "./TimelineElement";
 
+import "../style/styles.sass";
+import "../style/timeline-lines.sass";
+import "../style/timeline-bodies.sass";
+
 const classRegex = /(?<=^\s*)\[.+?\]/gs;
 
-const stringToClassArray = (input: string): string[] => {
+const toClassArray = (input: string): string[] => {
 	input = input.trim();
 	if (input[0] != "[" || input[input.length - 1] != "]") return [];
 
@@ -15,22 +19,26 @@ const stringToClassArray = (input: string): string[] => {
 		.split(/\s*,\s*/);
 };
 
-export default class MyPlugin extends Plugin {
+export default class TimelinePlugin extends Plugin {
 	onload = async () => {
 		TagParsers.forEach(({ tag, parser }) => {
-			this.registerMarkdownCodeBlockProcessor(tag, (source, el, ctx) => {
+			this.registerMarkdownCodeBlockProcessor(tag, (source, root, ctx) => {
+				const timelineElement = new TimelineElement(root, ctx.sourcePath);
+				const el = timelineElement.getElement();
+				
 				el.addClass("timeline");
 				const classMatch = source.match(classRegex);
 				if (classMatch !== null) {
-					const classes = stringToClassArray(classMatch[0]);
+					const classes = toClassArray(classMatch[0]);
 					el.addClasses(classes);
 				}
 
-				const timelineElement = new TimelineElement(el, ctx.sourcePath);
-				// handler(source, eventFactory);
-				// mainLine.style.gridRowEnd = `${eventFactory.getEventCounter() + 1}`;
+				const events = parser(source);
+				events.forEach(e => timelineElement.addEvent(e));
 			});
 		});
+
+		console.log("timeline load");
 	};
 
 

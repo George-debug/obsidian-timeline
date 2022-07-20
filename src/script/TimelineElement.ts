@@ -10,48 +10,19 @@ export default class TimelineElement {
 	private sourcePath: string;
 
 	constructor(root: HTMLElement, sourcePath: string) {
-		this.root = root;
+		this.root = root.createDiv({cls: 'timeline'});
 		this.sourcePath = sourcePath;
-		console.log(sourcePath);
 	}
 
 	public addEvent = (info: TimelineEventInfo) => {
-		const timeContainerEl = this.root.createDiv({ cls: "time-container" });
+		Object.entries(info).map(([key, val]) => {
+			const element = this.root.createDiv({cls: key});
+			const text = val;
+			MarkdownRenderer.renderMarkdown(text, element, this.sourcePath, null);
 
-		Object.entries(info).forEach(([key, val]) => {
-			console.log(key, val);
+			return [key, element];
 		})
-
-		// trim(time);
-		// trim(title);
-		// trim(description);
-
-		// 	timeEl = timeContainerEl.createDiv({ cls: "time" }),
-		// 	infoEl = this.root.createDiv({ cls: "info" }),
-		// 	titleEl = infoEl.createDiv({ cls: "title" }),
-		// 	descriptionEl = infoEl.createDiv({ cls: "description" });
-
-		// MarkdownRenderer.renderMarkdown(
-		// 	time,
-		// 	timeEl,
-		// 	this.sourcePath,
-		// 	null
-		// );
-		// MarkdownRenderer.renderMarkdown(
-		// 	title,
-		// 	titleEl,
-		// 	this.sourcePath,
-		// 	null
-		// );
-		// MarkdownRenderer.renderMarkdown(
-		// 	description,
-		// 	descriptionEl,
-		// 	this.sourcePath,
-		// 	null
-		// );
-
-		// ++this.eventCounter;
 	};
 
-	// getEventCounter = () => this.eventCounter;
+	public getElement = () => this.root;
 }

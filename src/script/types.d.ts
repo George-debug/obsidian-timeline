@@ -1,7 +1,8 @@
 interface TimelineEventInfo {
-    time?: string,
-    title?: string,
-    description?: string
+    [key: string]: string,
+    time: string,
+    title: string,
+    description: string
 }
 
 type Parser = (source: string) => TimelineEventInfo[];
