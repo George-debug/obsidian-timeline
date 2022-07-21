@@ -1,34 +1,6 @@
-
-
-$header-size: 1.3rem
+$header-size: 1.3em
 $event-margin: 4.5rem
 $line-margin: 1.5rem
-$text-margin: math.div($header-size, 1.5)
+$text-margin: 0.4em //math.div($header-size, 2)
 $point-size: 0.5rem
 $line-width: 0.5rem
-
-@mixin padding-top($val)
-    > *:first-child
-            margin-top: $val
-
-@mixin padding-bottom($val)
-    > *:last-child
-            margin-bottom: $val
-    
-
-@mixin padding4($left, $top, $right, $bottom)
-    > *
-        margin-left: $left
-        margin-right: $right
-
-    @include padding-top($top)
-    @include padding-bottom($bottom)
-
-
-
-@mixin padding2($left-right, $top-bottom)
-    @include padding4($left-right, $top-bottom, $left-right, $top-bottom)
-
-@mixin padding($val)
-    @include padding2($val, $val)
-    

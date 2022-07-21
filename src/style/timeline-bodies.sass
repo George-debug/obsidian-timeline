@@ -8,44 +8,51 @@
         display: none
 
 .timeline.body-2, .timeline.body-4
-    .title, .description
-        @include padding($text-margin)
+    $padding: $line-margin
+
+    .description, .title
+        padding: $padding
+        padding-top: $text-margin
 
     .title
-        @include padding-bottom(0)
+        padding-bottom: 0
 
-// .timeline.body-2
-//     $radius: $text-margin
-//     .title
-//         border-radius: $radius $radius 0 0
+    .time
+        margin-top: $text-margin
 
-//     .description
-//         border-radius: 0 0 $radius $radius
+.timeline.body-2
+    $radius: $line-margin
+    .title
+        border-radius: $radius $radius 0 0
 
-// .timeline.body-3
-//     $triangle-width: 1rem
+    .description
+        border-radius: 0 0 $radius $radius
 
-//     .title, .description
-//         margin-left: $triangle-width
+.timeline.body-3
+    $triangle-width: 1rem
 
-//     .title
-//         position: relative
-//         background: var(--timeline-active-color)
-//         padding: 0 $line-margin
+    .title, .description
+        margin-left: $triangle-width
 
-//         &::before
-//             content: ''
-//             position: absolute
-//             width: $triangle-width + 1rem
-//             background: var(--timeline-active-color)
-//             top: 0
-//             bottom: 0
-//             left: -($triangle-width)
-//             clip-path: polygon($triangle-width 0, 100% 0, 100% 100%, $triangle-width 100%, 0 50%)
+    .title
+        position: relative
+        background: var(--timeline-active-color)
+        padding-left: $line-margin
+        padding-right: $line-margin
 
-//     .description
-//         padding: $line-margin
+        &::before
+            content: ''
+            position: absolute
+            width: $triangle-width + 1rem
+            background: var(--timeline-active-color)
+            top: 0
+            bottom: 0
+            left: -($triangle-width)
+            clip-path: polygon($triangle-width 0, 100% 0, 100% 100%, $triangle-width 100%, 0 50%)
 
-// .timeline.body-4
-//     .title, .description
-//         border-left: 0.3rem solid var(--timeline-active-color)
+    .description
+        padding: $line-margin
+
+.timeline.body-4
+    .title, .description
+        border-left: 0.3rem solid var(--timeline-active-color)

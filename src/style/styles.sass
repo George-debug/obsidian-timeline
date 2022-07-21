@@ -39,6 +39,7 @@ $active-colors: ["background-modifier-success", "background-modifier-error", "ba
         display: flex
         flex-direction: column
         justify-content: center
+        padding: $text-margin 0
 
         > *
             font-size: $header-size
@@ -48,6 +49,7 @@ $active-colors: ["background-modifier-success", "background-modifier-error", "ba
         grid-column: 1
         position: relative
         justify-self: right
+        text-align: right
 
         &::before, &::after
             content: ' '
@@ -68,8 +70,7 @@ $active-colors: ["background-modifier-success", "background-modifier-error", "ba
     .description
         position: relative
         margin-bottom: $event-margin
-        
-        @include padding-top($text-margin)
+        padding-top: $text-margin
 
         &::after
             content: ' '

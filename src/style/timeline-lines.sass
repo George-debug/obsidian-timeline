@@ -48,8 +48,8 @@
         opacity: 0.15
 
 .timeline.line-4
-    $point-size: 1.4rem
-    $line-width: 0.2rem
+    $point-size: 1.30rem
+    $line-width: 0.15rem
 
     .time
         &::before, &::after
@@ -64,7 +64,7 @@
             right: -$line-margin - math.div($point-size + $line-width, 2)
 
         &::after
-            $aux: math.div($point-size, 1.8)
+            $aux: $point-size - 3 * $line-width//math.div($point-size, 1.6)
 
             opacity: 1
             background: var(--timeline-active-color)
