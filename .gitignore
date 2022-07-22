@@ -7,8 +7,10 @@ node_modules
 package-lock.json
 
 # build
-*.js.map
 main.js
+*.js.map
+styles.css
+*.css.map
 
 # obsidian
 data.json
