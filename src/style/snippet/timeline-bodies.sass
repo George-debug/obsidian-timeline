@@ -1,0 +1,69 @@
+@import "prefix"
+    
+.timeline.body-2, .timeline.body-3, .timeline.body-4
+    #{$timeline-selector}
+        > li:nth-child(3n+2), > li:nth-child(3n)
+            background-color: var(--background-primary-alt)
+            
+        > li:nth-child(3n)
+            margin-bottom: math.div($event-margin, 2)
+
+            &:last-child
+                margin-bottom: $text-margin
+
+            &::after
+                display: none
+
+.timeline.body-2, .timeline.body-4
+    #{$timeline-selector}
+        $padding: $line-margin
+
+        > li:nth-child(3n), > li:nth-child(3n+2)
+            padding: $padding
+            padding-top: $text-margin
+
+        > li:nth-child(3n+2)
+            padding-bottom: 0
+
+        > li:nth-child(3n+1)
+            margin-top: $text-margin
+
+.timeline.body-2
+    #{$timeline-selector}
+        $radius: $line-margin
+        > li:nth-child(3n+2)
+            border-radius: $radius $radius 0 0
+
+        > li:nth-child(3n)
+            border-radius: 0 0 $radius $radius
+
+.timeline.body-3
+    #{$timeline-selector}
+        $triangle-width: 1rem
+
+        > li:nth-child(3n+2), > li:nth-child(3n)
+            margin-left: $triangle-width
+
+        > li:nth-child(3n+2)
+            position: relative
+            background: var(--timeline-active-color)
+            padding-left: $line-margin
+            padding-right: $line-margin
+
+            &::before
+                content: ''
+                position: absolute
+                width: $triangle-width + 1rem
+                background: var(--timeline-active-color)
+                top: 0
+                bottom: 0
+                left: -($triangle-width)
+                clip-path: polygon($triangle-width 0, 100% 0, 100% 100%, $triangle-width 100%, 0 50%)
+
+        > li:nth-child(3n)
+            padding: $line-margin
+
+.timeline.body-4
+    #{$timeline-selector}
+        > li:nth-child(3n+2), > li:nth-child(3n)
+            border-left: 0.3rem solid var(--timeline-active-color)
