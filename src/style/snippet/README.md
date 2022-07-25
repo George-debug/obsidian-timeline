@@ -1,55 +1,36 @@
 ## How to use it
 
-Add the [timeline-snippet.css](https://github.com/George-debug/obsidian-timeline/blob/master/src/style/snippet/timeline-snippet.css) file to your vault. </br>
-Options > Appearance > CSS snippets 
-
-
-</br>
-
-- ### `timeline` tag
-
-  Requires `+` at the beginning of each line:
-
-  - each event has 3 `+`s in total: 1 for time, 1 for title and 1 for content
-  - you can separate them with empty lines if it's easier for you to write 
+- Add the [timeline-snippet.css](https://github.com/George-debug/obsidian-timeline/blob/master/src/style/snippet/timeline-snippet.css) file to your vault. </br>
+  Options > Appearance > CSS snippets 
+- Starts the page you want to use your timeline with
   ~~~markdown
-  ```timeline
-  [line-3, body-2]
-  + pre</br> 17th century
-  + Origins of coffee
-  + The modern version of roasted coffee originated in Arabia. During the 13th century, coffee was extremely popular with the Muslim community for its stimulant powers, which proved useful during long prayer sessions. By parching and boiling the coffee beans, rendering them infertile, the Arabs were able to corner the market on coffee crops. In fact, tradition says that not a single coffee plant existed outside of Arabia or Africa until the 1600s, when Baba Budan, an Indian pilgrim, left Mecca with fertile beans fastened to a strap across his abdomen. Baba’s beans resulted in a new and competitive European coffee trade.
-
-  + 17th century
-  + Europe and coffee
-  + In 1616, the Dutch founded the first European-owned coffee estate in Sri Lanka, then Ceylon, then Java in 1696. The French began growing coffee in the Caribbean, followed by the Spanish in Central America and the Portuguese in Brazil. European coffee houses sprang up in Italy and later France, where they reached a new level of popularity. Now, it is de _rigueur_ for Parisians to indulge in a cup of coffee and a baguette or croissant at the numerous coffee cafes throughout Paris.
-  ```
+  ---
+  cssclass: timeline
+  ---
   ~~~
 
 
-- ### `timeline-labeled` tag
+## Page Example
+~~~markdown
+---
+cssclass: timeline, body-2, line-3
+---
 
-  - each event has a corresponding label (`date`, `title` and `content`) that starts the line
-  - you can separate them with empty lines if it's easier for you to write
-  ~~~markdown
-  ```timeline-labeled
-  [line-3, body-2]
-  date: pre</br> 17th century
-  title: Origins of coffee
-  content:
-  The modern version of roasted coffee originated in Arabia. During the 13th century, coffee was extremely popular with the Muslim community for its stimulant powers, which proved useful during long prayer sessions. By parching and boiling the coffee beans, rendering them infertile, the Arabs were able to corner the market on coffee crops. In fact, tradition says that not a single coffee plant existed outside of Arabia or Africa until the 1600s, when Baba Budan, an Indian pilgrim, left Mecca with fertile beans fastened to a strap across his abdomen. Baba’s beans resulted in a new and competitive European coffee trade.
+## Perhaps a title
 
-  date: 17th century
-  title: Europe and coffee
-  content:
-  In 1616, the Dutch founded the first European-owned coffee estate in Sri Lanka, then Ceylon, then Java in 1696. The French began growing coffee in the Caribbean, followed by the Spanish in Central America and the Portuguese in Brazil. European coffee houses sprang up in Italy and later France, where they reached a new level of popularity. Now, it is de _rigueur_ for Parisians to indulge in a cup of coffee and a baguette or croissant at the numerous coffee cafes throughout Paris.
-  ```
-  ~~~
+- pre</br> 17th century
+- Origins of coffee
+- The modern version of roasted coffee originated in Arabia. During the 13th century, coffee was extremely popular with the Muslim community for its stimulant powers, which proved useful during long prayer sessions. By parching and boiling the coffee beans, rendering them infertile, the Arabs were able to corner the market on coffee crops. In fact, tradition says that not a single coffee plant existed outside of Arabia or Africa until the 1600s, when Baba Budan, an Indian pilgrim, left Mecca with fertile beans fastened to a strap across his abdomen. Baba’s beans resulted in a new and competitive European coffee trade.
 
-  <br/>
+- 17th century
+- Europe and coffee
+- In 1616, the Dutch founded the first European-owned coffee estate in Sri Lanka, then Ceylon, then Java in 1696. The French began growing coffee in the Caribbean, followed by the Spanish in Central America and the Portuguese in Brazil. European coffee houses sprang up in Italy and later France, where they reached a new level of popularity. Now, it is de _rigueur_ for Parisians to indulge in a cup of coffee and a baguette or croissant at the numerous coffee cafes throughout Paris.
 
-`[]` is optional!
+other stuff written 
+~~~
 
-You can use `[]` at the beginning of the code-block to add pre-written classes or your own classes to the wrapper. <br />
+## WARNING!
+Every list that is not inside the timeline will render another timeline!
 
 ## Customize
 
