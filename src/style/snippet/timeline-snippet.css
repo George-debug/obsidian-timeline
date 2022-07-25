@@ -73,11 +73,11 @@
   flex-direction: column;
   justify-content: center;
   padding: 0.4em 0;
-  font-size: 1.3em;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 .timeline ul:not(ul ul) > li:nth-child(3n+1) > *, .timeline ul:not(ul ul) > li:nth-child(3n+2) > * {
-  font-size: 1.3em;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 .timeline ul:not(ul ul) > li:nth-child(3n+1) {

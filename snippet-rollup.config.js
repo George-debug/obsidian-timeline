@@ -25,7 +25,7 @@ export default [
         failOnError: true,
         runtime: require("sass"),
         indentedSyntax: true,
-        watch: './src/style/snippet',
+        watch: './src/style/snippet/*.sass',
         prefix: "@use 'sass:math'\n",
         outputStyle: isProd ? 'compressed' : undefined
       })
