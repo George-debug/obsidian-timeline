@@ -1,4 +1,6 @@
 # Build Amazing Timelines
+We recommend you use [the snippet](https://github.com/George-debug/obsidian-timeline/blob/master/src/style/snippet/timeline-snippet.css) instead for `footnotes` and `node links` and use it with `other plugins`.
+
 
 ![Create your own timeline](https://user-images.githubusercontent.com/57345333/180435506-7d51bec3-0cc8-48b1-9f22-24199c988dbf.gif)
 
@@ -93,4 +95,4 @@ If you want your own color use `--timeline-active-color` css variable attached t
 - [Ivan Che](https://github.com/taqyon)
 
 ## Support
-[<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="BuyMeACoffee" width="100">](https://www.buymeacoffee.com/CarSalesman)
+<a href="https://www.buymeacoffee.com/CarSalesman"><img src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=carsalesman&button_colour=6a8695&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00"></a>
