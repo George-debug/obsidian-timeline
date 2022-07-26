@@ -1,5 +1,5 @@
 # Build Amazing Timelines
-We recommend you use [the snippet](https://github.com/George-debug/obsidian-timeline/blob/master/src/style/snippet/timeline-snippet.css) instead for `footnotes` and `node links` and use it with `other plugins`.
+We recommend you use [the snippet](https://github.com/George-debug/obsidian-timeline/tree/master/src/style/snippet) instead for `footnotes` and `node links` and use it with `other plugins`.
 
 
 ![Create your own timeline](https://user-images.githubusercontent.com/57345333/180435506-7d51bec3-0cc8-48b1-9f22-24199c988dbf.gif)
